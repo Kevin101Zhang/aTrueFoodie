@@ -17,13 +17,19 @@
     <script defer src="js/yelp.js"></script>
     <script defer src="js/googlePlaces.js"></script>
     <script defer src="js/foursquare.js"></script>
+    <script defer src="js/geolocation.js"></script>
+    <script defer src="js/zomato.js"></script>
 
 </head>
 
-<body>
+<body style="background-color: lightpink">
+
     <div class="container-fluid" id="yelp">
         <p>Yelp Testing</p>
         <ul>
+            <input id="yelpSearch" type="text" name="yelpSearch"><br>
+            <input id="yelpSubmit" type="submit" value="Submit">
+            <hr>
             <li class="restaurantName">Restaurant Name: </li>
             <li class="restaurantLocation">Restaurant Location: </li>
             <li class="restaurantRating">Restaurant Rating: </li>
@@ -35,6 +41,9 @@
     <div class="container-fluid" id="googlePlaces">
         <p>Google Places Testing</p>
         <ul>
+            <input id="googlePlacesSearch" type="text" name="googlePlacesSearch"><br>
+            <input id="googlePlacesSubmit" type="submit" value="Submit">
+            <hr>
             <li class="restaurantName">Restaurant Name: </li>
             <li class="restaurantLocation">Restaurant Location: </li>
             <li class="restaurantRating">Restaurant Rating: </li>
@@ -46,12 +55,26 @@
     <div class="container-fluid" id="foursquare">
         <p>Four Square Testing</p>
         <ul>
+            <input id="foursquareSearch" type="text" name="foursquareSearch"><br>
+            <input id="foursquareSubmit" type="submit" value="Submit">
+            <hr>
             <li class="restaurantName">Restaurant Name: </li>
             <li class="restaurantLocation">Restaurant Location: </li>
             <li class="restaurantRating">Restaurant Rating: </li>
         </ul>
     </div>
 
+    <div class="container-fluid" id="zomato">
+        <p>Yelp Testing</p>
+        <ul>
+            <input id="zomatoSearch" type="text" name="zomatoSearch"><br>
+            <input id="zomatoSubmit" type="submit" value="Submit">
+            <hr>
+            <li class="restaurantName">Restaurant Name: </li>
+            <li class="restaurantLocation">Restaurant Location: </li>
+            <li class="restaurantRating">Restaurant Rating: </li>
+        </ul>
+    </div>
 </body>
 
 </html>
