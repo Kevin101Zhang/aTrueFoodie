@@ -17,10 +17,15 @@
   },
   "homepage": "https://github.com/Kevin101Zhang/projectTwo#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
-    "sequelize": "^4.42.0"
+    "sequelize": "^4.42.0",
+    "yelp": "^1.0.2",
+    "yelp-fusion": "^2.2.1",
+    "zomato": "^1.1.0",
+    "zomato.js": "^1.1.0"
   }
 }
