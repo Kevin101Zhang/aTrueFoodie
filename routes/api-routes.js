@@ -9,6 +9,9 @@ const zomato = new Zomato('ede2e38f2b30c238f7eec802e4642392');
 var GooglePlacesPromises = require('googleplaces-promises');
 var placesPromises = new GooglePlacesPromises('AIzaSyDFTJ2SY-u5McOmAaic0i0l-kp_0oY95Po');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 // module.exports = function(app) {
 
 // };
@@ -76,6 +79,40 @@ router.post('/api/search/', function(req, res) {
       }).catch(function(e) {
         console.log(e);
     });
+});
+
+router.post("/api/signUp/", function (req, res) {
+    console.log(req.body);
+    var myPlaintextPassword = req.body.password;
+    bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
+        console.log(hash);
+
+        db.signUpInfo.create({
+            username: req.body.username,
+            password: hash,
+        }).then(function (result) {
+            res.json(result);
+            console.log(result);
+        });
+    });
+});
+
+
+router.get("/api/login/", function(req, res) {
+   console.log("Connected to API\n\n");
+    // var myPlaintextPassword = req.body.password;
+    // console.log(myPlaintextPassword);
+
+    // bcrypt.compare(myPlaintextPassword, hash, function (err, resPass) {
+    //     // resPass == true
+    //     db.signUpInfo.findAll({
+    //         where: {
+    //             username: req.body.username,
+    //         }
+    //     }).then(function (result) {
+    //         console.log(result);
+    //     });
+    // });
 });
 
 module.exports = router;
