@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
+    "database": "restaurants_db", //THIS IS DB NAME, REFER TO SCHEMA.
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
