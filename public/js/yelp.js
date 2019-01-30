@@ -27,6 +27,12 @@ function getLocation() {
         $("#zomato").find($(".restaurantName")).text(JSON.stringify(res.zomatoData.name));
         $("#zomato").find($(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
         $("#zomato").find($(".restaurantRating")).text(JSON.stringify(res.zomatoData.rating));
+
+        console.log(res.googleData);
+        
+        $("#googlePlaces").find($(".restaurantName")).text(JSON.stringify(res.googleData[0].name));
+        $("#googlePlaces").find($(".restaurantLocation")).text(JSON.stringify(res.googleData[0].vicinity));
+        $("#googlePlaces").find($(".restaurantRating")).text(JSON.stringify(res.googleData[0].rating));
         console.log(res);
     })
  }
