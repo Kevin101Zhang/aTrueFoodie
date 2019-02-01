@@ -25,10 +25,12 @@ $(document).ready(function () {
       username: $("#loginuname").val().trim(),
       password: $("#loginpsw").val().trim(),
     };
+
     console.log(checkUser);
 
-    $.get("/api/login", function (data) {
-      checkUser = data;
-    })
+    $.post("/api/login/", checkUser);
   })
 });
+
+//sarah user
+//123 password

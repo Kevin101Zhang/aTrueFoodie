@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "restaurants_db", //THIS IS DB NAME, REFER TO SCHEMA.
+    "password": "root12345",
+    "database": "restaurants_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
