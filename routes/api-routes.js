@@ -18,65 +18,65 @@ const saltRounds = 10;
 
 var router = express.Router();
 
-router.post('/api/search/', function(req, res) {
+router.post('/api/search/', function (req, res) {
     console.log(req.body);
     var searchTerm = req.body.searchTerm;
     var location = req.body.location.toString();
 
     // Yelp:
-    yelpClient.search({ 
+    yelpClient.search({
         term: searchTerm,
         location: location
-      }).then(function(response) {
+    }).then(function (response) {
         var allYelpData = response.jsonBody.businesses;
-        allYelpData = allYelpData.sort(function(a, b){
+        allYelpData = allYelpData.sort(function (a, b) {
             return b.rating - a.rating;
         });
         var yelpData = allYelpData[0];
 
         //Zomato:
         zomato.search({
-            q: searchTerm,
-            count: 1,
-            lat: req.body.location[0],
-            lon: req.body.location[1]
-        })
-        .then(function(data){
-            var zomatoData = {}
-            zomatoData.name = data.restaurants[0].name;
-            zomatoData.rating = data.restaurants[0].user_rating.aggregate_rating;
-            zomatoData.address = data.restaurants[0].location.address;
-            zomatoData.apiName = 'zomato';
+                q: searchTerm,
+                count: 1,
+                lat: req.body.location[0],
+                lon: req.body.location[1]
+            })
+            .then(function (data) {
+                var zomatoData = {}
+                zomatoData.name = data.restaurants[0].name;
+                zomatoData.rating = data.restaurants[0].user_rating.aggregate_rating;
+                zomatoData.address = data.restaurants[0].location.address;
+                zomatoData.apiName = 'zomato';
 
-            // console.log(allData);
+                // console.log(allData);
 
-            // Google Places:
-            var searchParams = {
-                location: req.body.location,
-                types: 'restaurant',
-                keyword: req.body.searchTerm
-            },
+                // Google Places:
+                var searchParams = {
+                        location: req.body.location,
+                        types: 'restaurant',
+                        keyword: req.body.searchTerm
+                    },
 
-            placeSearch = placesPromises.placeSearch(searchParams);
-         
-            placeSearch
-                .then(function(googleData){
-                    // console.log('google');
-                    // console.log(googleData);
-                    
-                    var allData = {
-                        yelpData: yelpData,
-                        zomatoData: zomatoData,
-                        googleData: googleData.results
-                    };
+                    placeSearch = placesPromises.placeSearch(searchParams);
 
-                    res.json(allData);
-                })
-                .fail(function(error){
-                    console.log(error);
-                })
-        });
-      }).catch(function(e) {
+                placeSearch
+                    .then(function (googleData) {
+                        // console.log('google');
+                        // console.log(googleData);
+
+                        var allData = {
+                            yelpData: yelpData,
+                            zomatoData: zomatoData,
+                            googleData: googleData.results
+                        };
+
+                        res.json(allData);
+                    })
+                    .fail(function (error) {
+                        console.log(error);
+                    })
+            });
+    }).catch(function (e) {
         console.log(e);
     });
 });
@@ -98,21 +98,31 @@ router.post("/api/signUp/", function (req, res) {
 });
 
 
-router.get("/api/login/", function(req, res) {
-   console.log("Connected to API\n\n");
-    // var myPlaintextPassword = req.body.password;
-    // console.log(myPlaintextPassword);
+router.post("/api/login/", function (req, res) {
+    console.log("Connected to API\n\n");
 
-    // bcrypt.compare(myPlaintextPassword, hash, function (err, resPass) {
-    //     // resPass == true
-    //     db.signUpInfo.findAll({
-    //         where: {
-    //             username: req.body.username,
-    //         }
-    //     }).then(function (result) {
-    //         console.log(result);
-    //     });
-    // });
+    var myPlaintextPassword = req.body.password; //456
+    console.log(myPlaintextPassword);
+
+    // resPass == true
+    db.signUpInfo.findOne({
+        where: {
+            username: req.body.username,
+        }
+    }).then(function (user) {
+        console.log(user);
+
+        if (!user.validatePassword(myPlaintextPassword)) {
+            res.json({
+                success: false,
+                message: 'Username or Password is Incorrect'
+            });
+            console.log("Does not Work");
+        } else {
+            res.sendStatus(200);
+            console.log("it works");
+        }
+    });
 });
 
 module.exports = router;
