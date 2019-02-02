@@ -6,6 +6,10 @@ module.exports = function (app) {
 
     // PRODUCTION HTML FILES USE THESE FILES FOR PRODUCTION
     
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/production_html/home.html"));
+    });
+
     // HOME PAGE
     app.get("/home", function (req,res) {
         // TODO: SAVE THE REQUEST TO DATABASE TO SEE WHAT DEVICE THE USER IS USING
