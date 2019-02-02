@@ -2,13 +2,10 @@
 var path = require("path");
 let db = require("../models");
 
-// models
-
 module.exports = function (app) { 
 
     // HOME PAGE
     app.get("/home", function (req,res) {
-
         // TODO: SAVE THE REQUEST TO DATABASE TO SEE WHAT DEVICE THE USER IS USING
         //       LOCATION, IP ADDRESS, ETC.
         res.sendFile(path.join(__dirname, "../public/home.html"));
