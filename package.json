@@ -23,6 +23,7 @@
     "express": "^4.16.4",
     "googleplaces": "^0.6.1",
     "googleplaces-promises": "^1.0.0",
+    "googleplacesapi": "0.0.2",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
     "sequelize": "^4.42.0",
