@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NA</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/lumen/bootstrap.min.css" />
+
+    <!-- Jquery -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Javascript -->
+    <script defer src="js/yelp.js"></script>
+    <script defer src="js/googlePlaces.js"></script>
+    <script defer src="js/foursquare.js"></script>
+    <script defer src="js/geolocation.js"></script>
+    <script defer src="js/zomato.js"></script>
+    <script defer src="js/signup.js"></script>
+
+</head>
+
+<body style="background-color: lightpink">
+
+    <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+        <br>
+        <button id="signUpSubmit" type="submit">SignUp</button>
+        <br>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+
+    <hr>
+    
+    <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input id="loginuname" type="text" placeholder="Enter Username" name="uname" required>
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input id="loginpsw" type="password" placeholder="Enter Password" name="psw" required>
+        <br>
+        <button id="loginSubmit" type="submit">Login</button>
+        <br>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+
+    <div class="container-fluid" id="yelp">
+        <p>Yelp Testing</p>
+        <ul>
+            <input id="yelpSearch" type="text" name="yelpSearch"><br>
+            <input id="yelpSubmit" type="submit" value="Submit">
+            <hr>
+            <li class="restaurantName">Restaurant Name: </li>
+            <li class="restaurantLocation">Restaurant Location: </li>
+            <li class="restaurantRating">Restaurant Rating: </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="container-fluid" id="googlePlaces">
+        <p>Google Places Testing</p>
+        <ul>
+            <input id="googlePlacesSearch" type="text" name="googlePlacesSearch"><br>
+            <input id="googlePlacesSubmit" type="submit" value="Submit">
+            <hr>
+            <li class="restaurantName">Restaurant Name: </li>
+            <li class="restaurantLocation">Restaurant Location: </li>
+            <li class="restaurantRating">Restaurant Rating: </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="container-fluid" id="foursquare">
+        <p>Four Square Testing</p>
+        <ul>
+            <input id="foursquareSearch" type="text" name="foursquareSearch"><br>
+            <input id="foursquareSubmit" type="submit" value="Submit">
+            <hr>
+            <li class="restaurantName">Restaurant Name: </li>
+            <li class="restaurantLocation">Restaurant Location: </li>
+            <li class="restaurantRating">Restaurant Rating: </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid" id="zomato">
+        <p>Zomato Testing</p>
+        <ul>
+            <input id="zomatoSearch" type="text" name="zomatoSearch"><br>
+            <input id="zomatoSubmit" type="submit" value="Submit">
+            <hr>
+            <li class="restaurantName">Restaurant Name: </li>
+            <li class="restaurantLocation">Restaurant Location: </li>
+            <li class="restaurantRating">Restaurant Rating: </li>
+        </ul>
+    </div>
+</body>
+
+</html>
