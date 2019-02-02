@@ -18,6 +18,7 @@ router.post('/api/search/', function(req, res) {
     console.log(req.body);
     var searchTerm = req.body.searchTerm;
     var location = req.body.location.toString();
+    var allData = {};
 
     // Yelp:
     yelpClient.search({ 
@@ -30,41 +31,43 @@ router.post('/api/search/', function(req, res) {
         });
 
         var yelpData = allYelpData[0];
+        // allData.yelpData = yelpData;
         // var yelpData = allYelpData;
 
-        console.log('Yelp');
-        console.log(yelpData.name);
+        allData.yelpData = {
+            id: yelpData.id,
+            name: yelpData.name,
+            image_url: yelpData.image_url,
+            location: yelpData.location.address1 + ", " + yelpData.location.city + ", " + yelpData.location.zip_code,
+            rating: yelpData.rating
+        };
+
+        // console.log('Yelp');
+        // console.log(yelpData.name);
 
         //Google:
         var gpa = new googleplacesapi({key: 'AIzaSyDFTJ2SY-u5McOmAaic0i0l-kp_0oY95Po'});
 
         // gpa.search({query: 'burger', location: '40.7207484, -73.7763413'}, function(err, res) {
-        gpa.search({query: yelpData.name, location: location.toString()}, function(err, res) {
+        gpa.search({query: yelpData.name, location: location.toString()}, function(err, data) {
             if (!err) {
-                console.log('google');
-                console.log(res); // Results
+                // console.log('google');
+                // console.log(res); // Results
+
+                var googleData = data.results[0];
+
+                allData.googleData = {
+                    id: googleData.id,
+                    name: googleData.name,
+                    rating: googleData.rating
+                }
+
+                console.log(allData);
+                res.json(allData);
             } else {
                 console.log(err);
             }
         });
-
-        //Zomato:
-        // zomato.search({
-        //     q: searchTerm,
-        //     // count: 1,
-        //     lat: req.body.location[0],
-        //     lon: req.body.location[1]
-        // })
-        // .then(function(data){
-        //     var zomatoData = data;
-
-        //     // zomatoData.name = data.restaurants[0].name;
-        //     // zomatoData.rating = data.restaurants[0].user_rating.aggregate_rating;
-        //     // zomatoData.address = data.restaurants[0].location.address;
-        //     // zomatoData.apiName = 'zomato';
-
-        //     // console.log(allData);
-        // });
       }).catch(function(e) {
         console.log(e);
     });
