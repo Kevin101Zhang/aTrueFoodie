@@ -1,82 +1,74 @@
 var db = require("../models");
 var express = require('express');
+
 var yelp = require('yelp-fusion');
 var yelpClient = yelp.client('goV2fJN1bsvrbS3Kks8RTfWmyn7rGA1UnembUsKhboPqWkV6HaO0ffrUxOEnEKHOwXxhnO6tobM1Y73_OhE2cpGdshq2K9IxWEQm90H4VX8UzGMeqSjT5ABMLmtKXHYx');
+
+var googleplacesapi = require('googleplacesapi');
 
 var Zomato = require('zomato.js');
 const zomato = new Zomato('ede2e38f2b30c238f7eec802e4642392');
 
-var GooglePlacesPromises = require('googleplaces-promises');
-var placesPromises = new GooglePlacesPromises('AIzaSyDFTJ2SY-u5McOmAaic0i0l-kp_0oY95Po');
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// module.exports = function(app) {
-
-// };
-
 var router = express.Router();
 
-router.post('/api/search/', function (req, res) {
+router.post('/api/search/', function(req, res) {
     console.log(req.body);
     var searchTerm = req.body.searchTerm;
     var location = req.body.location.toString();
+    var allData = {};
 
     // Yelp:
-    yelpClient.search({
+    yelpClient.search({ 
         term: searchTerm,
         location: location
-    }).then(function (response) {
+      }).then(function(response) {
         var allYelpData = response.jsonBody.businesses;
-        allYelpData = allYelpData.sort(function (a, b) {
+        allYelpData = allYelpData.sort(function(a, b){
             return b.rating - a.rating;
         });
+
         var yelpData = allYelpData[0];
+        // allData.yelpData = yelpData;
+        // var yelpData = allYelpData;
 
-        //Zomato:
-        zomato.search({
-                q: searchTerm,
-                count: 1,
-                lat: req.body.location[0],
-                lon: req.body.location[1]
-            })
-            .then(function (data) {
-                var zomatoData = {}
-                zomatoData.name = data.restaurants[0].name;
-                zomatoData.rating = data.restaurants[0].user_rating.aggregate_rating;
-                zomatoData.address = data.restaurants[0].location.address;
-                zomatoData.apiName = 'zomato';
+        allData.yelpData = {
+            id: yelpData.id,
+            name: yelpData.name,
+            image_url: yelpData.image_url,
+            location: yelpData.location.address1 + ", " + yelpData.location.city + ", " + yelpData.location.zip_code,
+            rating: yelpData.rating
+        };
 
-                // console.log(allData);
+        // console.log('Yelp');
+        // console.log(yelpData.name);
 
-                // Google Places:
-                var searchParams = {
-                        location: req.body.location,
-                        types: 'restaurant',
-                        keyword: req.body.searchTerm
-                    },
+        //Google:
+        var gpa = new googleplacesapi({key: 'AIzaSyDFTJ2SY-u5McOmAaic0i0l-kp_0oY95Po'});
 
-                    placeSearch = placesPromises.placeSearch(searchParams);
+        // gpa.search({query: 'burger', location: '40.7207484, -73.7763413'}, function(err, res) {
+        gpa.search({query: yelpData.name, location: location.toString()}, function(err, data) {
+            if (!err) {
+                // console.log('google');
+                // console.log(res); // Results
 
-                placeSearch
-                    .then(function (googleData) {
-                        // console.log('google');
-                        // console.log(googleData);
+                var googleData = data.results[0];
 
-                        var allData = {
-                            yelpData: yelpData,
-                            zomatoData: zomatoData,
-                            googleData: googleData.results
-                        };
+                allData.googleData = {
+                    id: googleData.id,
+                    name: googleData.name,
+                    rating: googleData.rating
+                }
 
-                        res.json(allData);
-                    })
-                    .fail(function (error) {
-                        console.log(error);
-                    })
-            });
-    }).catch(function (e) {
+                console.log(allData);
+                res.json(allData);
+            } else {
+                console.log(err);
+            }
+        });
+      }).catch(function(e) {
         console.log(e);
     });
 });
