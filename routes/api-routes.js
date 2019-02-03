@@ -33,13 +33,16 @@ router.post('/api/search/', function (req, res) {
         var yelpData = allYelpData[0];
         // allData.yelpData = yelpData;
         // var yelpData = allYelpData;
+        console.log(yelpData);
 
         allData.yelpData = {
             id: yelpData.id,
             name: yelpData.name,
             image_url: yelpData.image_url,
             location: yelpData.location.address1 + ", " + yelpData.location.city + ", " + yelpData.location.zip_code,
-            rating: yelpData.rating
+            phone: yelpData.display_phone,
+            rating: yelpData.rating,
+            yelp_review_count: yelpData.review_count
         };
 
         // console.log('Yelp');
@@ -57,15 +60,63 @@ router.post('/api/search/', function (req, res) {
         }, function (err, data) {
             if (!err) {
                 // console.log('google');
-                // console.log(res); // Results
+                // console.log(data); // Results
 
-                var googleData = data.results[0];
+                if(data.results.length > 0) {
+                    var googleData = data.results[0];
 
-                allData.googleData = {
-                    id: googleData.id,
-                    name: googleData.name,
-                    rating: googleData.rating
+                    allData.googleData = {
+                        id: googleData.id,
+                        name: googleData.name,
+                        rating: googleData.rating,
+                        open: googleData.opening_hours.open_now,
+                        price_range: googleData.price_level,
+                        google_review_count: googleData.user_ratings_total
+                    }
+
+                    allData.trueReview = {
+                        trueRating: ((allData.yelpData.rating + googleData.rating) / 2),
+                        total_review_count: (allData.yelpData.yelp_review_count + googleData.user_ratings_total)
+                    }
+                } else {
+                    allData.trueReview = {
+                        trueRating: allData.yelpData.rating,
+                        total_review_count: allData.yelpData.yelp_review_count
+                    }
                 }
+
+                // Foursquare: 
+                // var axios = require('axios');
+                // var CLIENT_ID = 'Q5N1AJUZOCOZ2GL23LCRHWN4WGNM3OR1IJFRGLHLY1TUZY2R';
+                // var CLIENT_SECRET = 'R1L4ZQS0XR3MXHV4IQSDOD2QW2TYDTTPFIZZU233INRHJS4E';
+                // var url = 'https://api.foursquare.com/v2/venues/explore?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=20180323&limit=10&ll=' + location + '&query='+ yelpData.name + "'"
+                // axios.get(url).then(function(data) {
+                //     // console.log(data.data.response.groups[0].items[0]);
+                //     var allFoursquareData = data.data.response.groups[0].items[0];
+                //     if(allFoursquareData) {
+                //         var foursquareData = {
+                //             id: allFoursquareData.venue.id,
+                //             name: allFoursquareData.venue.name
+                //         }
+            
+                //         // Foursquare Rating Search:
+                //         var foursquareRatingSearchUrl = 'https://api.foursquare.com/v2/venues/' + foursquareData.id + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=20180323';
+                //         axios.get(foursquareRatingSearchUrl).then(function(data){
+                //             if(data.data.response.venue.rating) {
+                //                 foursquareData.rating = data.data.response.venue.rating;
+                //                 console.log(foursquareData);
+                //                 allData.foursquareData = foursquareData;
+                //                 // console.log("allData");
+                //                 // res.json(allData);
+                //             } 
+                //         })
+                //     }
+                //     console.log(allData);
+                //     res.json(allData);
+                // })
+
+                console.log('google data');
+                console.log(googleData);
 
                 console.log(allData);
                 res.json(allData);
