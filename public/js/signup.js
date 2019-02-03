@@ -31,6 +31,3 @@ $(document).ready(function () {
     $.post("/api/login/", checkUser);
   })
 });
-
-//sarah user
-//123 password
