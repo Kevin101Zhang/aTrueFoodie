@@ -10,6 +10,8 @@ $(document).ready(function () {
       password: $("#psw").val().trim(),
     };
 
+    $.
+
     $.post("/api/signUp/", newUser);
     $("#uname").val() === "";
     $("#psw").val() === "";
