@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Contact Us</title>
+		<title>Sign Up</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 		<div id="page-wrapper">
@@ -13,43 +13,41 @@
 				<header id="header">
 					<nav id="nav">
 						<ul>
-							<li><a href="./production_html/home.html">Home</a></li>
-							<li>
-								<a href="#" class="icon fa-angle-down">Stuff</a>
-								<ul>
-									<li><a href="./production_html/ourstory.html">Our Story</a></li>
-									<li><a href="./production_html/contact.html">Contact</a></li>
-								</ul>
-							</li>
-							<li><a href="./production_html/signup.html" class="button">Sign Up</a></li>
+							<!-- Path to homepage -->
+							<li><a href="landingpage.html">Home</a></li>
+							
+							<!-- Path to signup page -->
+							<li><a href="signup.html" class="button">Log In</a></li>
 						</ul>
 					</nav>
 				</header>
 
 			<!-- Main -->
 				<section id="main" class="container medium">
+					
 					<header>
-						<h2>Contact Us</h2>
-						<p>Tell us what you think about our little operation.</p>
+						<h2>Sign Up</h2>
 					</header>
+					
 					<div class="box">
+						
 						<form method="post" action="#">
+							
 							<div class="row gtr-50 gtr-uniform">
+								<!-- email input goes here -->
 								<div class="col-6 col-12-mobilep">
-									<input type="text" name="name" id="name" value="" placeholder="Name" />
+									<input type="email" name="email" id="uname" placeholder="Email Address" />
 								</div>
+								
+								<!-- password input goes here -->
 								<div class="col-6 col-12-mobilep">
-									<input type="email" name="email" id="email" value="" placeholder="Email" />
+									<input type="text" name="gender" id="psw" value="" placeholder="Password" />
 								</div>
+
+								<!-- submit button goes here -->
 								<div class="col-12">
-									<input type="text" name="subject" id="subject" value="" placeholder="Subject" />
-								</div>
-								<div class="col-12">
-									<textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
-								</div>
-								<div class="col-12">
-									<ul class="actions special">
-										<li><input type="submit" value="Send Message" /></li>
+									<ul class="actions special button">
+										<li><input type="submit" id="signUpSubmit" value="Sign Up" /></li>
 									</ul>
 								</div>
 							</div>
@@ -66,7 +64,7 @@
 						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 					</ul>
 					<ul class="copyright">
-							<li>&copy;All rights reserved.</li><li>Design: <a href="https://github.com/JonFromNYC">JonFromNYC</a></li>
+							<li>Made with love for our fellow man</li><li>A big thank you from: John, Sung, Byron, Jonathan</li>
 					</ul>
 				</footer>
 
