@@ -10,6 +10,8 @@ $(document).ready(function () {
       password: $("#psw").val().trim(),
     };
 
+    $.
+
     $.post("/api/signUp/", newUser);
     $("#uname").val() === "";
     $("#psw").val() === "";
@@ -31,6 +33,3 @@ $(document).ready(function () {
     $.post("/api/login/", checkUser);
   })
 });
-
-//sarah user
-//123 password
