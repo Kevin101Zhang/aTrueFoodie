@@ -5,16 +5,19 @@ $(document).ready(function () {
     console.log($("#uname").val().trim());
     console.log($("#psw").val().trim());
 
+    if ($("#uname").val().trim() === "" || $("#psw").val().trim() === "") {
+      alert("Username or Password is Blank");
+      $("#uname").css("background-color", "pink");
+      $("#psw").css("background-color", "pink");
+      return null;
+    }
+
     var newUser = {
       username: $("#uname").val().trim(),
       password: $("#psw").val().trim(),
     };
 
-    $.
-
     $.post("/api/signUp/", newUser);
-    $("#uname").val() === "";
-    $("#psw").val() === "";
   })
 
   $("#loginSubmit").on("click", function () {
@@ -30,6 +33,15 @@ $(document).ready(function () {
 
     console.log(checkUser);
 
-    $.post("/api/login/", checkUser);
+    $.post("/api/login/", checkUser, function (err, res) {
+      console.log(res);
+      if (res === "success") {
+        alert("Successful Login")
+        // window.location.replace("../public/landingpage.html");
+      } else {
+        alert("Invalid Username or Password");
+      }
+    });
+
   })
 });

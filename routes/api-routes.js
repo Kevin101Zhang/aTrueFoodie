@@ -62,7 +62,7 @@ router.post('/api/search/', function (req, res) {
                 // console.log('google');
                 // console.log(data); // Results
 
-                if(data.results.length > 0) {
+                if (data.results.length > 0) {
                     var googleData = data.results[0];
 
                     allData.googleData = {
@@ -98,7 +98,7 @@ router.post('/api/search/', function (req, res) {
                 //             id: allFoursquareData.venue.id,
                 //             name: allFoursquareData.venue.name
                 //         }
-            
+
                 //         // Foursquare Rating Search:
                 //         var foursquareRatingSearchUrl = 'https://api.foursquare.com/v2/venues/' + foursquareData.id + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=20180323';
                 //         axios.get(foursquareRatingSearchUrl).then(function(data){
@@ -156,6 +156,7 @@ router.post("/api/signUp/", function (req, res) {
                     }).then(function (result) {
                         res.json(result);
                         console.log(result);
+                        // res.location('back');
                     });
                 });
             } else {
@@ -188,10 +189,11 @@ router.post("/api/login/", function (req, res) {
                 message: 'Username or Password is Incorrect',
                 success: false
             });
-            console.log("Does not Work");
         } else {
-            res.sendStatus(200);
-            console.log("it works");
+            res.json({
+                message: 'Login Success',
+                success: true
+            });
         }
     });
 });
