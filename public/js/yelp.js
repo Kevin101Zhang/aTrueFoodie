@@ -22,14 +22,14 @@ function getLocation() {
     }).then(function (res) {
 
         // still testing here
-        $("#true-result").append("<h2>" + JSON.stringify(res.yelpData.name) + "</h2>");
+        $("#true-result").append("<h2>" + JSON.stringify(res.trueReview) + "</h2>");
      
         // $("#yelp").find($(".restaurantName")).text(JSON.stringify(res.yelpData.name));
         // $("#yelp").find($(".restaurantLocation")).text(JSON.stringify(res.yelpData.location.display_address.toString()));
         // $("#yelp").find($(".restaurantRating")).text(JSON.stringify(res.yelpData.rating));
         
         // $("#zomato").find($(".restaurantName")).text(JSON.stringify(res.zomatoData.name));
-        // $("#zomato").find($(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
+        // $("#zomato").find(g$(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
         // $("#zomato").find($(".restaurantRating")).text(JSON.stringify(res.zomatoData.rating));
 
         // console.log(res.googleData);
