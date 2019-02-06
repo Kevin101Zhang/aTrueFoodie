@@ -4,7 +4,7 @@ let db = require("../models");
 
 module.exports = function (app) {
     // NEW HOME PAGE
-    app.get("/new", function (req, res) {
+    app.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/landingpage.html"));
     });
 

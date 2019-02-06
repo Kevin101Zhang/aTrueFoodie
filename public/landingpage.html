@@ -6,6 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="assets/js/jquery.min.js"></script>
 </head>
 
 <body class="is-preload">
@@ -27,12 +28,12 @@
 			<header class="major">
 				<h2>TITLE OF WEBPAGE</h2>
 			</header>
-			<form method="post" action="#">
+
 				<div class="row gtr-50 gtr-uniform">
 
 					<!-- Enter what you're looking for here -->
 					<div class="col-6 col-12-mobilep">
-						<input type="text" name="business-name" id="business-name" placeholder="Find" />
+						<input type="text" name="Search" id="search-keyword" placeholder="Find" />
 					</div>
 
 					<!-- Enter gps data -->
@@ -44,53 +45,27 @@
 					<!-- TODO: merge both fields into one solid piece ~JG -->
 					<div class="col-12">
 						<ul class="actions special">
-							<li><input type="submit" value="Submit" /></li>
+							<li><input id="searchSubmit" type="submit" value="Submit" /></li>
 						</ul>
 					</div>
 				</div>
-			</form>
+
 		</div>
 		<!-- End of main -->
 
-		<!-- Tiles of restaurant matches -->
-		<section id="matches" class="container">
-			<div class="row">
+		<!---- True Review Results Here ---->
+		<section class="container">
+			<div id="true-result" class="row">
 
-				<div class="col-4 col-12-medium disappears">
-					<section class="first">
-						<header>
-							<h2>return location 1</h2>
-							<img src="https://via.placeholder.com/210x210" id="yelp-image" alt="yelp-photo">
-						</header>
-						<p>Restaurant description from yelp.</p>
-					</section>
-				</div>
-
-				<div class="col-4 col-12-medium disappears">
-					<section class="middle">
-						<header>
-							<h2>return location 2</h2>
-							<img src="https://via.placeholder.com/210x210" id="google-image" alt="google-photo">
-						</header>
-						<p>Restaurant description from google places.</p>
-					</section>
-				</div>
-
-				<div class="col-4 col-12-medium disappears">
-					<section class="last">
-						<header>
-							<h2>return location 3</h2>
-							<img src="https://via.placeholder.com/210x210" id="third-image" alt="third-photo">
-						</header>
-						<p>Restaurant description from third source.</p>
-					</section>
-				</div>
+			
+				
 			</div>
 		</section>
-		<!-- End of tiles -->
+		<!---- End of True Review Results ---->
+
 
 	</div>
-	<script src="assets/js/jquery.min.js"></script>
+	<script src="js/yelp.js" type="text/javascript"></script>
 </body>
 
 </html>

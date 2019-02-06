@@ -10,7 +10,7 @@ function getLocation() {
     var longitude = position.coords.longitude;
     var location = [latitude, longitude];
 
-    var searchTerm = $('#yelpSearch').val();
+    var searchTerm = $('#search-keyword').val();
 
     $.ajax('/api/search/', {
         type: 'POST',
@@ -20,20 +20,24 @@ function getLocation() {
         },
         dataType: 'json'
     }).then(function (res) {
-        $("#yelp").find($(".restaurantName")).text(JSON.stringify(res.yelpData.name));
-        $("#yelp").find($(".restaurantLocation")).text(JSON.stringify(res.yelpData.location.display_address.toString()));
-        $("#yelp").find($(".restaurantRating")).text(JSON.stringify(res.yelpData.rating));
-        
-        $("#zomato").find($(".restaurantName")).text(JSON.stringify(res.zomatoData.name));
-        $("#zomato").find($(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
-        $("#zomato").find($(".restaurantRating")).text(JSON.stringify(res.zomatoData.rating));
 
-        console.log(res.googleData);
+        // still testing here
+        $("#true-result").append("<h2>" + JSON.stringify(res.yelpData.name) + "</h2>");
+     
+        // $("#yelp").find($(".restaurantName")).text(JSON.stringify(res.yelpData.name));
+        // $("#yelp").find($(".restaurantLocation")).text(JSON.stringify(res.yelpData.location.display_address.toString()));
+        // $("#yelp").find($(".restaurantRating")).text(JSON.stringify(res.yelpData.rating));
         
-        $("#googlePlaces").find($(".restaurantName")).text(JSON.stringify(res.googleData[0].name));
-        $("#googlePlaces").find($(".restaurantLocation")).text(JSON.stringify(res.googleData[0].vicinity));
-        $("#googlePlaces").find($(".restaurantRating")).text(JSON.stringify(res.googleData[0].rating));
-        console.log(res);
+        // $("#zomato").find($(".restaurantName")).text(JSON.stringify(res.zomatoData.name));
+        // $("#zomato").find($(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
+        // $("#zomato").find($(".restaurantRating")).text(JSON.stringify(res.zomatoData.rating));
+
+        // console.log(res.googleData);
+        
+        // $("#googlePlaces").find($(".restaurantName")).text(JSON.stringify(res.googleData[0].name));
+        // $("#googlePlaces").find($(".restaurantLocation")).text(JSON.stringify(res.googleData[0].vicinity));
+        // $("#googlePlaces").find($(".restaurantRating")).text(JSON.stringify(res.googleData[0].rating));
+        // console.log(res);
     })
  }
 
@@ -41,6 +45,6 @@ function getLocation() {
      console.log(error);
  }
 
- $(document).on('click', '#yelpSubmit', function(e) {
+ $(document).on('click', '#searchSubmit', function(e) {
     getLocation();
  });
