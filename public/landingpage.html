@@ -26,20 +26,24 @@
 		<!-- Main -->
 		<div class="box" id="searchArea">
 			<header class="major">
-				<h2>TITLE OF WEBPAGE</h2>
+				<h2>A True Foodie's Search</h2>
 			</header>
 
 				<div class="row gtr-50 gtr-uniform">
 
 					<!-- Enter what you're looking for here -->
+					<div class="col-3 col-12-mobilep"></div>
 					<div class="col-6 col-12-mobilep">
-						<input type="text" name="Search" id="search-keyword" placeholder="Find" />
+						<input type="text" name="Search" id="search-keyword" placeholder="Search your restaurant or food!" />
 					</div>
+					<div class="col-3 col-12-mobilep"></div>
 
-					<!-- Enter gps data -->
+					<!-- Enter zipcode -->
+					<!-- <div class="col-3 col-12-mobilep"></div>
 					<div class="col-6 col-12-mobilep">
 						<input type="text" name="gps" id="gps-input" placeholder="Zip Code" />
 					</div>
+					<div class="col-3 col-12-mobilep"></div> -->
 
 					<!-- Submit button -->
 					<!-- TODO: merge both fields into one solid piece ~JG -->
@@ -55,7 +59,7 @@
 
 		<!---- True Review Results Here ---->
 		<section class="container">
-			<div id="true-result" class="row">
+			<div id="true-result">
 
 			
 				
@@ -63,7 +67,11 @@
 		</section>
 		<!---- End of True Review Results ---->
 
-
+		<!---- Yelp and G results Here? ---->
+			<section class="container">
+				<div id="yelp-result" class="col-6 col-12-mobilep"></div>
+				<div id="google-result" class="col-6 col-12-mobilep"></div>
+			</section>
 	</div>
 	<script src="js/yelp.js" type="text/javascript"></script>
 </body>

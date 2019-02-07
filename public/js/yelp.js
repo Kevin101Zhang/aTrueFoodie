@@ -21,23 +21,36 @@ function getLocation() {
         dataType: 'json'
     }).then(function (res) {
 
-        // still testing here
-        $("#true-result").append("<h2>" + JSON.stringify(res.trueReview) + "</h2>");
-     
-        // $("#yelp").find($(".restaurantName")).text(JSON.stringify(res.yelpData.name));
-        // $("#yelp").find($(".restaurantLocation")).text(JSON.stringify(res.yelpData.location.display_address.toString()));
-        // $("#yelp").find($(".restaurantRating")).text(JSON.stringify(res.yelpData.rating));
-        
-        // $("#zomato").find($(".restaurantName")).text(JSON.stringify(res.zomatoData.name));
-        // $("#zomato").find(g$(".restaurantLocation")).text(JSON.stringify(res.zomatoData.address));
-        // $("#zomato").find($(".restaurantRating")).text(JSON.stringify(res.zomatoData.rating));
+        // a true foodie result here
+        var restaurantFound = ("<h3>" + "We found the best restaurant in your area!" + "</h3><br>");
 
-        // console.log(res.googleData);
+        var imageUrl = res.yelpData.image_url;
+        var restaurantImage = $("<img>");
+            restaurantImage.attr('class', "img");
+            restaurantImage.attr('src', imageUrl);
+            restaurantImage.attr('alt', "Doctor Image");
+            restaurantImage.attr('style', "display: block; margin-left: 0px; margin-right: auto; width: 20%");
+
+        var restaurantInfo = ("<p>" + res.yelpData.name + "<br>" + res.yelpData.location + "<br>" + res.yelpData.phone + "</p><br>")
+
+        var trueDataRating = ("<p>" + "Aggregate rating: " + res.trueReview.trueRating + "<br>" + "Total review count: " + res.trueReview.total_review_count + "</p><br>");
+
+        $("#true-result").append(restaurantFound);
+        $("#true-result").append(restaurantImage);
+        $("#true-result").append(restaurantInfo);
+        $("#true-result").append(trueDataRating);
         
-        // $("#googlePlaces").find($(".restaurantName")).text(JSON.stringify(res.googleData[0].name));
-        // $("#googlePlaces").find($(".restaurantLocation")).text(JSON.stringify(res.googleData[0].vicinity));
-        // $("#googlePlaces").find($(".restaurantRating")).text(JSON.stringify(res.googleData[0].rating));
-        // console.log(res);
+        // yelp column here
+        var yelpData = ("<p>" + "Yelp Rating: " + res.yelpData.rating + "</p><br>");
+
+        $("#yelp-result").append(yelpData);
+
+        // google column here
+        var googleData = ("<p>" + "Google Rating: " + res.googleData.rating + "</p><br>");
+
+        $("#google-result").append(googleData);
+
+
     })
  }
 
