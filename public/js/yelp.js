@@ -22,7 +22,7 @@ function getLocation() {
     }).then(function (res) {
 
         // a true foodie result here
-        var restaurantFound = ("<h3>" + "We found the best restaurant in your area!" + "</h3><br>");
+        var restaurantFound = ("<h3>" + "The best restaurant for your search " + "\"" + searchTerm + "\"" + " in you area" + "</h3><br>");
 
         var imageUrl = res.yelpData.image_url;
         var restaurantImage = $("<img>");
@@ -31,30 +31,19 @@ function getLocation() {
             restaurantImage.attr('alt', "Doctor Image");
             restaurantImage.attr('style', "display: block; margin-left: 0px; margin-right: auto; width: 20%");
 
-        var restaurantInfo = ("<p>" + res.yelpData.name + "<br>" + res.yelpData.location + "<br>" + res.yelpData.phone + "</p><br>")
+        var restaurantInfo = ("<p id='restaurant-info'>" + res.yelpData.name + "<br>" + res.yelpData.location + "<br>" + res.yelpData.phone + "</p><br>")
 
-        var trueDataRating = ("<p>" + "Aggregate Rating: " + res.trueReview.trueRating + "<br>" + "Total Review Count: " + res.trueReview.total_review_count + "</p><br>");
+        // yelp and google ratings here
+        var yelpGoogleData = ("<span id='yelp-google-rating'>" + "Yelp Rating: " + res.yelpData.rating + "</span><br>" + "<span>" + "Google Rating: " + res.googleData.rating + "</span><br>");
 
-        // yelp rating here
-        var yelpData = ("<p>" + "Yelp Rating: " + res.yelpData.rating + "</p><br>");
-        // google rating here
-        var googleData = ("<p>" + "Google Rating: " + res.googleData.rating + "</p><br>");
+        // our true rating here
+        var trueDataRating = ("<span id='true-rating'>" + "Average Rating: " + res.trueReview.trueRating + "<br>" + "Total Review Count: " + res.trueReview.total_review_count + "</span><br>");
 
-        $("#true-result").append(restaurantFound);
-        $("#true-result").append(restaurantImage);
-        $("#true-result").append(restaurantInfo);
-        $("#true-result").append(trueDataRating);
-        $("#true-result").append(yelpData);
-        $("#true-result").append(googleData);
-        
-
-
-        
-
- 
-
-    
-
+        $("#true-result").prepend(trueDataRating);
+        $("#true-result").prepend(yelpGoogleData);
+        $("#true-result").prepend(restaurantInfo);
+        $("#true-result").prepend(restaurantImage);
+        $("#true-result").prepend(restaurantFound);
 
     })
  }
