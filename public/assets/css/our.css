@@ -1,20 +1,35 @@
-#title{
+#title {
     font-family: 'Lobster', cursive;
     font-size: 50px;
 }
-#searchSubmit:hover{
+
+#title:hover {
+    font-size: 55px;
+    text-shadow: 1px 1px whitesmoke;
+}
+
+#searchSubmit:hover,
+#signUpSubmit:hover,
+#loginSubmit:hover {
     background-color: #e89980;
 }
-#signUpSubmit:hover{
-    background-color: #e89980;
-}
-#loginSubmit:hover{
-    background-color: #e89980;
-}
-h2,input{
+
+h2,
+input {
     font-family: 'Lobster';
 }
-#frontTitle{
+
+#frontTitle {
     font-size: 100px;
     text-shadow: 2px 1px #e89980;
+}
+
+#knife {
+    display: none;
+}
+
+#centeringli {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

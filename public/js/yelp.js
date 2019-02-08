@@ -1,6 +1,7 @@
 console.log('js online');
 
 function getLocation() {
+    $("#knife").css("display", "inline");
     var geolocation = navigator.geolocation;
     geolocation.getCurrentPosition(showLocation, geoErrorHandler);
 }
@@ -52,6 +53,8 @@ function getLocation() {
         $("#true-result").prepend(restaurantInfo);
         $("#true-result").prepend(restaurantImage);
         $("#true-result").prepend(restaurantFound);
+        $("#searchSubmit").css("display", "inline");
+        $("#knife").css("display", "none");
 
     })
  }
@@ -61,5 +64,6 @@ function getLocation() {
  }
 
  $(document).on('click', '#searchSubmit', function(e) {
+     $("#searchSubmit").css("display", "none");
     getLocation();
  });
