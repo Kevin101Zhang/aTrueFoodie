@@ -6,16 +6,12 @@ var yelpClient = yelp.client('goV2fJN1bsvrbS3Kks8RTfWmyn7rGA1UnembUsKhboPqWkV6Ha
 
 var googleplacesapi = require('googleplacesapi');
 
-var Zomato = require('zomato.js');
-const zomato = new Zomato('ede2e38f2b30c238f7eec802e4642392');
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var router = express.Router();
 
 router.post('/api/search/', function (req, res) {
-    console.log(req.body);
     var searchTerm = req.body.searchTerm;
     var location = req.body.location.toString();
     var allData = {};
@@ -31,9 +27,6 @@ router.post('/api/search/', function (req, res) {
         });
 
         var yelpData = allYelpData[0];
-        // allData.yelpData = yelpData;
-        // var yelpData = allYelpData;
-        console.log(yelpData);
 
         allData.yelpData = {
             id: yelpData.id,
@@ -45,23 +38,16 @@ router.post('/api/search/', function (req, res) {
             yelp_review_count: yelpData.review_count
         };
 
-        // console.log('Yelp');
-        // console.log(yelpData.name);
-
         //Google:
         var gpa = new googleplacesapi({
             key: 'AIzaSyDFTJ2SY-u5McOmAaic0i0l-kp_0oY95Po'
         });
 
-        // gpa.search({query: 'burger', location: '40.7207484, -73.7763413'}, function(err, res) {
         gpa.search({
             query: yelpData.name,
             location: location.toString()
         }, function (err, data) {
             if (!err) {
-                // console.log('google');
-                // console.log(data); // Results
-
                 if(data.results.length > 0) {
                     var googleData = data.results[0];
 
@@ -85,41 +71,20 @@ router.post('/api/search/', function (req, res) {
                     }
                 }
 
-                // Foursquare: 
-                // var axios = require('axios');
-                // var CLIENT_ID = 'Q5N1AJUZOCOZ2GL23LCRHWN4WGNM3OR1IJFRGLHLY1TUZY2R';
-                // var CLIENT_SECRET = 'R1L4ZQS0XR3MXHV4IQSDOD2QW2TYDTTPFIZZU233INRHJS4E';
-                // var url = 'https://api.foursquare.com/v2/venues/explore?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=20180323&limit=10&ll=' + location + '&query='+ yelpData.name + "'"
-                // axios.get(url).then(function(data) {
-                //     // console.log(data.data.response.groups[0].items[0]);
-                //     var allFoursquareData = data.data.response.groups[0].items[0];
-                //     if(allFoursquareData) {
-                //         var foursquareData = {
-                //             id: allFoursquareData.venue.id,
-                //             name: allFoursquareData.venue.name
-                //         }
-            
-                //         // Foursquare Rating Search:
-                //         var foursquareRatingSearchUrl = 'https://api.foursquare.com/v2/venues/' + foursquareData.id + '?client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET + '&v=20180323';
-                //         axios.get(foursquareRatingSearchUrl).then(function(data){
-                //             if(data.data.response.venue.rating) {
-                //                 foursquareData.rating = data.data.response.venue.rating;
-                //                 console.log(foursquareData);
-                //                 allData.foursquareData = foursquareData;
-                //                 // console.log("allData");
-                //                 // res.json(allData);
-                //             } 
-                //         })
-                //     }
-                //     console.log(allData);
-                //     res.json(allData);
-                // })
+                var axios = require('axios');
+                var phoneNum = allData.yelpData.phone.toString().replace(/([\s-()])/g, '')
 
-                console.log('google data');
-                console.log(googleData);
-
-                console.log(allData);
-                res.json(allData);
+                axios.get('https://data.cityofnewyork.us/resource/9w7m-hzhe.json?phone=' + phoneNum)
+                .then(function(data) {
+                    var foodRatingData = data.data.filter((data) => data.grade !== undefined)[0];
+                    if(foodRatingData) {
+                        allData.food_rating = {
+                            grade: foodRatingData.grade
+                        }
+                    }
+                    console.log(allData);
+                    res.json(allData);
+                });
             } else {
                 console.log(err);
             }
