@@ -33,22 +33,27 @@ function getLocation() {
 
         var restaurantInfo = ("<p>" + res.yelpData.name + "<br>" + res.yelpData.location + "<br>" + res.yelpData.phone + "</p><br>")
 
-        var trueDataRating = ("<p>" + "Aggregate rating: " + res.trueReview.trueRating + "<br>" + "Total review count: " + res.trueReview.total_review_count + "</p><br>");
+        var trueDataRating = ("<p>" + "Aggregate Rating: " + res.trueReview.trueRating + "<br>" + "Total Review Count: " + res.trueReview.total_review_count + "</p><br>");
+
+        // yelp rating here
+        var yelpData = ("<p>" + "Yelp Rating: " + res.yelpData.rating + "</p><br>");
+        // google rating here
+        var googleData = ("<p>" + "Google Rating: " + res.googleData.rating + "</p><br>");
 
         $("#true-result").append(restaurantFound);
         $("#true-result").append(restaurantImage);
         $("#true-result").append(restaurantInfo);
         $("#true-result").append(trueDataRating);
+        $("#true-result").append(yelpData);
+        $("#true-result").append(googleData);
         
-        // yelp column here
-        var yelpData = ("<p>" + "Yelp Rating: " + res.yelpData.rating + "</p><br>");
 
-        $("#yelp-result").append(yelpData);
 
-        // google column here
-        var googleData = ("<p>" + "Google Rating: " + res.googleData.rating + "</p><br>");
+        
 
-        $("#google-result").append(googleData);
+ 
+
+    
 
 
     })
