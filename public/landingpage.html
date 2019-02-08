@@ -8,7 +8,13 @@
 	<!-- CSS TEMPLATE -->
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<!-- Font Awesome -->
-	    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<!-- Google Merienda Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<!-- Google Lobster Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<!-- Our CSS -->
+	<link rel="stylesheet" href="assets/css/our.css" />
 	<!-- JQuery -->
 	<script src="assets/js/jquery.min.js"></script>
 </head>
@@ -18,11 +24,11 @@
 
 		<!-- Header -->
 		<header id="header">
-			  <em><span id="title" class="title">aTrueFoodi</span></em>
+			   <a href="landingpage.html"> <em><span id="title" class="title">aTrueFoodi</span></em></a>
 			<nav id="nav">
 				<ul>
-					<li><a href="signup.html" class="button">Sign Up</a></li>
-					<li><a href="login.html" class="button">Log In</a></li>
+					<li><a href="signup.html" class="button">Sign Up <i class="fas fa-user-plus"></i></a></li>
+					<li><a href="login.html" class="button">Log In <i class="fas fa-user"></i></a></li>
 				</ul>
 			</nav>
 		</header>
@@ -31,7 +37,7 @@
 		<!-- Main -->
 		<div class="box" id="searchArea">
 			<header class="major">
-				<h2>A True Foodie's Search</h2>
+				<h2 id="frontTitle">A True Foodie's Search <i class="fas fa-crown"></i></h2>
 			</header>
 
 			<div class="row gtr-50 gtr-uniform">
@@ -54,7 +60,7 @@
 				<!-- TODO: merge both fields into one solid piece ~JG -->
 				<div class="col-12">
 					<ul class="actions special">
-						<li><input id="searchSubmit" type="submit" value="Submit" /></li>
+						<li id="centeringli"><input id="searchSubmit" type="submit" value="Submit" /><img id="knife" src="./assets/images/knife.gif"></li>
 					</ul>
 				</div>
 			</div>
@@ -63,11 +69,8 @@
 		<!-- End of main -->
 
 		<!---- True Review Results Here ---->
-		<section class="container">
+		<section class="box-ours special">
 			<div id="true-result">
-
-
-
 			</div>
 		</section>
 		<!---- End of True Review Results ---->

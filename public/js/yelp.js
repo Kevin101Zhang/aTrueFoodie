@@ -1,11 +1,12 @@
 console.log('js online');
 
 function getLocation() {
+    $("#knife").css("display", "inline");
     var geolocation = navigator.geolocation;
     geolocation.getCurrentPosition(showLocation, geoErrorHandler);
 }
 
- function showLocation(position) {
+function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     var location = [latitude, longitude];
@@ -20,21 +21,26 @@ function getLocation() {
         },
         dataType: 'json'
     }).then(function (res) {
-
+        $(".box-ours").css("display", "block");
+        $("#true-result").empty();
         // a true foodie result here
-        var restaurantFound = ("<h3>" + "The best restaurant for your search " + "\"" + searchTerm + "\"" + " in your area" + "</h3><br>");
+        var restaurantFound = ("<h3>" + "Best " + "\"" + searchTerm + "\"" + " in your area" + "</h3><br>");
 
         var imageUrl = res.yelpData.image_url;
         var restaurantImage = $("<img>");
-            restaurantImage.attr('class', "img");
-            restaurantImage.attr('src', imageUrl);
-            restaurantImage.attr('alt', "Doctor Image");
-            restaurantImage.attr('style', "display: block; margin-left: 0px; margin-right: auto; width: 20%");
+        restaurantImage.attr('class', "restaurantImg");
+        restaurantImage.attr('src', imageUrl);
+        restaurantImage.attr('alt', "Doctor Image");
+        // restaurantImage.css('width', "50%");
 
-        var restaurantInfo = ("<span id='restaurant-info'>" + res.yelpData.name + "<br>" + res.yelpData.location + "<br>" + res.yelpData.phone + "</span><br><br>")
+        var restaurantName = ("<span id='restaurant-Name'>" + res.yelpData.name + "</span><br>");
+        var restaurantLocation = ("<span id='restaurant-Location'>" + res.yelpData.location + "</span><br>");
+        var restaurantPhone = ("<span id='restaurant-Phone'>" + res.yelpData.phone + "</span><br>");
+
 
         // yelp and google ratings here
-        var yelpGoogleData = ("<span id='yelp-google-rating'>" + "Yelp Rating: " + res.yelpData.rating + "</span><br>" + "<span>" + "Google Rating: " + res.googleData.rating + "</span><br>");
+        var yelpData = ("<span id='yelp-rating'>" + "Yelp Rating <i class='fab fa-yelp'></i>: " + res.yelpData.rating + "</span><br>");
+        var googleData = ("<span id='yelp-rating'>" + "Google Rating: <i class='fab fa-google'></i>" + res.googleData.rating + "</span><br>");
 
         // our true rating here
         var trueDataRating = ("<span id='true-rating'>" + "True Foodie's Aggregate Rating: " + res.trueReview.trueRating + "<br>" + "Total Review Count: " + res.trueReview.total_review_count + "</span><br>");
@@ -48,18 +54,28 @@ function getLocation() {
 
         $("#true-result").prepend(healthGrade);
         $("#true-result").prepend(trueDataRating);
-        $("#true-result").prepend(yelpGoogleData);
-        $("#true-result").prepend(restaurantInfo);
+        $("#true-result").prepend(yelpData);
+        $("#true-result").prepend(googleData);
+
+        $("#true-result").prepend(restaurantPhone);
+        $("#true-result").prepend(restaurantLocation);
+        $("#true-result").prepend(restaurantName);
+
+
         $("#true-result").prepend(restaurantImage);
         $("#true-result").prepend(restaurantFound);
 
+        $("#searchSubmit").css("display", "inline");
+        $("#knife").css("display", "none");
+
     })
- }
+}
 
- function geoErrorHandler(error) {
-     console.log(error);
- }
+function geoErrorHandler(error) {
+    console.log(error);
+}
 
- $(document).on('click', '#searchSubmit', function(e) {
+$(document).on('click', '#searchSubmit', function (e) {
+    $("#searchSubmit").css("display", "none");
     getLocation();
- });
+});
