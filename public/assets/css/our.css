@@ -1,0 +1,20 @@
+#title{
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+}
+#searchSubmit:hover{
+    background-color: #e89980;
+}
+#signUpSubmit:hover{
+    background-color: #e89980;
+}
+#loginSubmit:hover{
+    background-color: #e89980;
+}
+h2,input{
+    font-family: 'Lobster';
+}
+#frontTitle{
+    font-size: 100px;
+    text-shadow: 2px 1px #e89980;
+}
