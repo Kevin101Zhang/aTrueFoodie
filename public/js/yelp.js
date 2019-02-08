@@ -22,7 +22,7 @@ function getLocation() {
     }).then(function (res) {
 
         // a true foodie result here
-        var restaurantFound = ("<h3>" + "The best restaurant for your search " + "\"" + searchTerm + "\"" + " in you area" + "</h3><br>");
+        var restaurantFound = ("<h3>" + "The best restaurant for your search " + "\"" + searchTerm + "\"" + " in your area" + "</h3><br>");
 
         var imageUrl = res.yelpData.image_url;
         var restaurantImage = $("<img>");
