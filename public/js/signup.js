@@ -25,6 +25,9 @@ $(document).ready(function () {
 
     console.log($("#loginuname").val().trim());
     console.log($("#loginpsw").val().trim());
+    var sessionUsername = $("#loginuname").val().trim();
+    // sessionStorage.clear();
+    sessionStorage.setItem("username", sessionUsername);
 
     var checkUser = {
       username: $("#loginuname").val().trim(),
@@ -38,7 +41,7 @@ $(document).ready(function () {
       if (res === "success") {
         alert("Successful Login")
 
-        sessionStorage.clear();
+        // sessionStorage.clear();
         sessionStorage.setItem("login_status", true);
         var loginStatus = sessionStorage.getItem("login_status");
         console.log("login status" + loginStatus);
