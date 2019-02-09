@@ -36,9 +36,10 @@ $(document).ready(function () {
 
     console.log(checkUser);
 
-    $.post("/api/login/", checkUser, function (err, res) {
+    $.post("/api/login/", checkUser, function (err, res, count) {
       console.log(res);
-      if (res === "success") {
+      console.log(count);
+      if (res === "success" && count === 2) {
         alert("Successful Login")
 
         // sessionStorage.clear();
