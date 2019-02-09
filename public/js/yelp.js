@@ -1,4 +1,16 @@
 console.log('js online');
+var loginStatus = sessionStorage.getItem("login_status");
+console.log("login status: " + loginStatus);
+
+$(document).ready(function() {
+    console.log("testing1");
+    if (loginStatus === true || loginStatus === "true") {
+        console.log("testing2");
+        $("#session-signup").hide();
+        $("#session-login").hide();
+        $("#nav").text("Username Here")
+    }
+});
 
 function getLocation() {
     $("#knife").css("display", "inline");
