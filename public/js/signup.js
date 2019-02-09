@@ -37,6 +37,11 @@ $(document).ready(function () {
       console.log(res);
       if (res === "success") {
         alert("Successful Login")
+
+        sessionStorage.clear();
+        sessionStorage.setItem("login_status", true);
+        var loginStatus = sessionStorage.getItem("login_status");
+        console.log("login status" + loginStatus);
         // window.location.replace("../public/landingpage.html");
       } else {
         alert("Invalid Username or Password");
