@@ -1,6 +1,8 @@
 console.log('js online');
 var loginStatus = sessionStorage.getItem("login_status");
 console.log("login status: " + loginStatus);
+var sessionUsername = sessionStorage.getItem("username");
+console.log("session user: " + sessionUsername);
 
 $(document).ready(function() {
     console.log("testing1");
@@ -8,7 +10,8 @@ $(document).ready(function() {
         console.log("testing2");
         $("#session-signup").hide();
         $("#session-login").hide();
-        $("#nav").text("Username Here")
+        var sessionUserHtml = $("<span>").text("You're signed in as " + "\"" + sessionUsername + "\"");
+        $("#nav").append(sessionUserHtml)
     }
 });
 
