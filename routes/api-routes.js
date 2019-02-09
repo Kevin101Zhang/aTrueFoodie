@@ -48,7 +48,7 @@ router.post('/api/search/', function (req, res) {
             location: location.toString()
         }, function (err, data) {
             if (!err) {
-                if(data.results.length > 0) {
+                if (data.results.length > 0) {
                     var googleData = data.results[0];
 
                     allData.googleData = {
@@ -75,16 +75,16 @@ router.post('/api/search/', function (req, res) {
                 var phoneNum = allData.yelpData.phone.toString().replace(/([\s-()])/g, '')
 
                 axios.get('https://data.cityofnewyork.us/resource/9w7m-hzhe.json?phone=' + phoneNum)
-                .then(function(data) {
-                    var foodRatingData = data.data.filter((data) => data.grade !== undefined)[0];
-                    if(foodRatingData) {
-                        allData.food_rating = {
-                            grade: foodRatingData.grade
+                    .then(function (data) {
+                        var foodRatingData = data.data.filter((data) => data.grade !== undefined)[0];
+                        if (foodRatingData) {
+                            allData.food_rating = {
+                                grade: foodRatingData.grade
+                            }
                         }
-                    }
-                    console.log(allData);
-                    res.json(allData);
-                });
+                        console.log(allData);
+                        res.json(allData);
+                    });
             } else {
                 console.log(err);
             }
@@ -147,16 +147,15 @@ router.post("/api/login/", function (req, res) {
         }
     }).then(function (user) {
         console.log(user);
-
+        var count = 0;
         if (!user.validatePassword(myPlaintextPassword)) {
-            res.json({
-                message: 'Username or Password is Incorrect',
-                success: false
-            });
-            console.log("Does not Work");
+            count = 1;
+            console.log("Fail");
+            return count;
         } else {
-            res.sendStatus(200);
-            console.log("it works");
+            count = 2;
+            console.log("Successful Login");
+            return count;
         }
     });
 });

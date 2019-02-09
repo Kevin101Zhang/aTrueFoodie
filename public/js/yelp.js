@@ -4,7 +4,7 @@ console.log("login status: " + loginStatus);
 var sessionUsername = sessionStorage.getItem("username");
 console.log("session user: " + sessionUsername);
 
-$(document).ready(function() {
+$(document).ready(function () {
     if (loginStatus === true || loginStatus === "true") {
         $("#session-signup").hide();
         $("#session-login").hide();
@@ -53,10 +53,11 @@ function showLocation(position) {
 
         // yelp and google ratings here
         var yelpData = ("<span id='yelp-rating'>" + "Yelp Rating <i class='fab fa-yelp'></i>: " + res.yelpData.rating + "</span><br>");
-        var googleData = ("<span id='yelp-rating'>" + "Google Rating: <i class='fab fa-google'></i>" + res.googleData.rating + "</span><br>");
+        var googleData = ("<span id='google-rating'>" + "Google Rating <i class='fab fa-google'></i>" + res.googleData.rating + "</span><br>");
 
         // our true rating here
-        var trueDataRating = ("<span id='true-rating'>" + "True Foodie's Aggregate Rating: " + res.trueReview.trueRating + "<br>" + "Total Review Count: " + res.trueReview.total_review_count + "</span><br>");
+        var trueDataRating = ("<span id='true-rating'>" + "True Foodie's Aggregate Rating <i class='fas fa-crown'></i>" + res.trueReview.trueRating + "</span><br>");
+        var trueDataCount = ("<span id='true-count'>" + "Total Review Count: " + res.trueReview.total_review_count + "</span><br>");
 
         // NYC health department grade here
         if (res.food_rating === undefined) {
@@ -66,6 +67,7 @@ function showLocation(position) {
         }
 
         $("#true-result").prepend(healthGrade);
+        $("#true-result").prepend(trueDataCount);
         $("#true-result").prepend(trueDataRating);
         $("#true-result").prepend(yelpData);
         $("#true-result").prepend(googleData);
