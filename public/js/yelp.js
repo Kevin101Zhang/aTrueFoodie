@@ -5,9 +5,9 @@ var sessionUsername = sessionStorage.getItem("username");
 console.log("session user: " + sessionUsername);
 
 $(document).ready(function() {
-    console.log("testing1");
+    // console.log("testing1");
     if (loginStatus === true || loginStatus === "true") {
-        console.log("testing2");
+        // console.log("testing2");
         $("#session-signup").hide();
         $("#session-login").hide();
         var sessionUserHtml = $("<span>").text("You're signed in as " + "\"" + sessionUsername + "\"");
