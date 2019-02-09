@@ -1,8 +1,8 @@
 console.log('js online');
 var loginStatus = sessionStorage.getItem("login_status");
-console.log("login status: " + loginStatus);
+// console.log("login status: " + loginStatus);
 var sessionUsername = sessionStorage.getItem("username");
-console.log("session user: " + sessionUsername);
+// console.log("session user: " + sessionUsername);
 
 $(document).ready(function() {
     if (loginStatus === true || loginStatus === "true") {
