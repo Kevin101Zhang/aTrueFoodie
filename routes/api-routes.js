@@ -94,6 +94,10 @@ router.post('/api/search/', function (req, res) {
     });
 });
 
+router.post("/api/favorites/", function (req, res) {
+
+});
+
 router.post("/api/signUp/", function (req, res) {
 
     var myPlaintextPassword = req.body.password;
@@ -135,7 +139,7 @@ router.post("/api/signUp/", function (req, res) {
 });
 
 router.post("/api/login/", function (req, res) {
-    console.log("Connected to API\n\n");
+    console.log("Connected to API\n");
 
     var myPlaintextPassword = req.body.password;
     console.log(myPlaintextPassword);
@@ -147,15 +151,13 @@ router.post("/api/login/", function (req, res) {
         }
     }).then(function (user) {
         console.log(user);
-        var count = 0;
+
         if (!user.validatePassword(myPlaintextPassword)) {
-            count = 1;
-            console.log("Fail");
-            return count;
+            console.log("Does not Work");
+            return res.status(400).send("not working");
         } else {
-            count = 2;
-            console.log("Successful Login");
-            return count;
+            res.sendStatus(200).send("success");
+            console.log("it works");
         }
     });
 });

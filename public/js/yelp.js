@@ -8,9 +8,15 @@ $(document).ready(function () {
     if (loginStatus === true || loginStatus === "true") {
         $("#session-signup").hide();
         $("#session-login").hide();
-        var sessionUserHtml = $("<span>").text("You're signed in as " + "\"" + sessionUsername + "\"");
+        var sessionUserHtml = $("<button id='personal-ID'><span>").text("You're signed in as " + "\"" + sessionUsername);
         $("#nav").append(sessionUserHtml)
     }
+
+
+    $("#personal-ID").on("click", function () {
+        console.log("Hello World");
+        //Redirect to new HTML PAGE user.html
+    });
 });
 
 function getLocation() {
